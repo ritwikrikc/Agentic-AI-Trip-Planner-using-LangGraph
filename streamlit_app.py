@@ -2,8 +2,9 @@ import streamlit as st
 import requests
 import datetime
 import html
+import os
 
-BASE_URL = "http://localhost:8000"
+BASE_URL = os.getenv("BACK_END_HOST", "http://localhost:8000")
 
 st.set_page_config(
     page_title="🌍 AI Travel Planner",
