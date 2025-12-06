@@ -43,10 +43,16 @@ if __name__ == "__main__":
     # Set UVICORN_RELOAD=1 or UVICORN_RELOAD=true for development convenience.
     reload_flag = os.getenv("UVICORN_RELOAD", "false").lower() in ("1", "true", "yes")
 
+    # Get port from environment, default to 8000 for local development
+    port = int(os.getenv("PORT", 8000))
+    host = os.getenv("HOST", "0.0.0.0")
+    
+    logger.info(f"Starting server on {host}:{port}")
+
     uvicorn.run(
         "main:app",
-        host="0.0.0.0",
-        port=int(os.getenv("PORT", 8000)),
+        host=host,
+        port=port,
         reload=reload_flag,
     )
     
